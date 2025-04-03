@@ -1,4 +1,5 @@
-#include "card.h"
+// Card.cpp
+#include "Card.h"
 
 void Card::print() const {
     std::cout << toString();
@@ -10,4 +11,4 @@ std::string Card::toString() const {
                            "Jack", "Queen", "King", "Ace"};
 
     return ranks[static_cast<int>(rank)] + " of " + suits[static_cast<int>(suit)] + "\n";
-}// Added another stuff here
+}

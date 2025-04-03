@@ -1,4 +1,5 @@
-#include "deck.h"
+// Deck.cpp
+#include "Deck.h"
 #include <iostream>
 #include <random>
 #include <algorithm>
@@ -32,12 +33,6 @@ Card Deck::draw() {
     Card top = cards.back();
     cards.pop_back();
     return top;
-}
-
-void Deck::burnCard() {
-    if (!cards.empty()) {
-        cards.pop_back(); // Burn the top card
-    }
 }
 
 void Deck::printDeck() {

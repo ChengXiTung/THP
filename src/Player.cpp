@@ -1,10 +1,9 @@
-#include "player.h"
+// Player.cpp
+#include "Player.h"
 #include <iostream>
 
 Player::Player(const std::string &name, int startingChips)
-    : name(name), chips(startingChips),
-      hasFolded_(false), currentBet_(0), isAllIn_(false) {}
-
+    : name(name), chips(startingChips), isAllIn(false), hasFolded(false), currentBet(0) {}
 
 void Player::receiveCard(const Card &card) {
     hand.push_back(card);
@@ -15,7 +14,7 @@ void Player::clearHand() {
 }
 
 void Player::showHand() const {
-    std::cout << name << "'s hand: ";
+    std::cout << name << "'s hand: " << std::endl;
     for (const auto &card : hand) {
         card.print();
         std::cout << " ";
@@ -24,18 +23,16 @@ void Player::showHand() const {
 }
 
 int Player::getChips() const {
-    return chips;  // Corrected from "money" to "chips"
+    return chips;
 }
 
-
 void Player::fold() {
-    hasFolded_ = true;
+    hasFolded = true;
     std::cout << name << " has folded." << std::endl;
 }
 
-
 bool Player::placeBet(int amount) {
-    if (hasFolded_) {
+    if (hasFolded) {
         std::cout << name << " has already folded and cannot bet." << std::endl;
         return false;
     }
@@ -46,27 +43,37 @@ bool Player::placeBet(int amount) {
     }
 
     if (amount == chips) {
-        isAllIn_ = true; // Player is now all-in
+        isAllIn = true; // Player is now all-in
         std::cout << name << " is ALL-IN with " << amount << " chips!" << std::endl;
     } else {
         std::cout << name << " bets " << amount << " chips." << std::endl;
     }
 
     chips -= amount;
-    currentBet_ += amount;  // Track how much they have bet this round
+    currentBet += amount;  // Track how much they have bet this round
     return true;
 }
 
-void Player::addWinnings(int amount) {
-    chips += amount;
-    std::cout << name << " wins " << amount << " chips!" << std::endl;
+bool Player::getHasFolded() const {
+    return hasFolded;
 }
 
-std::string Player::getName() const {
-    return name;
+void Player::setHasFolded(bool folded) {
+    hasFolded = folded;
 }
 
-std::vector<Card> Player::getHand() const {
-    return hand;
+int Player::getCurrentBet() const {
+    return currentBet;
 }
 
+void Player::setCurrentBet(int bet) {
+    currentBet = bet;
+}
+
+bool Player::getIsAllIn() const {
+    return isAllIn;
+}
+
+void Player::setIsAllIn(bool allIn) {
+    isAllIn = allIn;
+}

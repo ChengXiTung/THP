@@ -1,7 +1,8 @@
+// HandEvaluator.h
 #ifndef HANDEVALUATOR_H
 #define HANDEVALUATOR_H
 
-#include "card.h"
+#include "Card.h"
 #include <vector>
 #include <string>
 #include <algorithm>
@@ -12,6 +13,7 @@ class HandEvaluator {
 public:
     static int evaluateHand(const std::vector<Card>& hand);
     static std::string getHandRankName(int rank);
+    static int evaluateFiveCards(const std::vector<Card>& fiveCards);
 };
 
 #endif
